@@ -1,0 +1,144 @@
+{
+  "categories": [
+    {
+      "id": "action",
+      "slug": "action",
+      "name": "ACTION",
+      "description": "Fast-paced combat and reflex-based gameplay",
+      "icon": "zap",
+      "gameCount": 2,
+      "color": "#ff006e",
+      "gradient": "linear-gradient(135deg, #ff006e, #bc13fe)"
+    },
+    {
+      "id": "adventure",
+      "slug": "adventure",
+      "name": "ADVENTURE",
+      "description": "Story-driven exploration and discovery",
+      "icon": "map",
+      "gameCount": 0,
+      "color": "#00d4ff",
+      "gradient": "linear-gradient(135deg, #00d4ff, #39ff14)"
+    },
+    {
+      "id": "rpg",
+      "slug": "rpg",
+      "name": "RPG",
+      "description": "Character progression and deep narratives",
+      "icon": "gem",
+      "gameCount": 1,
+      "color": "#ffea00",
+      "gradient": "linear-gradient(135deg, #ffea00, #ff006e)"
+    },
+    {
+      "id": "strategy",
+      "slug": "strategy",
+      "name": "STRATEGY",
+      "description": "Tactical thinking and resource management",
+      "icon": "cpu",
+      "gameCount": 0,
+      "color": "#bc13fe",
+      "gradient": "linear-gradient(135deg, #bc13fe, #00d4ff)"
+    },
+    {
+      "id": "simulation",
+      "slug": "simulation",
+      "name": "SIMULATION",
+      "description": "Realistic systems and management",
+      "icon": "sliders",
+      "gameCount": 0,
+      "color": "#39ff14",
+      "gradient": "linear-gradient(135deg, #39ff14, #ffea00)"
+    },
+    {
+      "id": "sports",
+      "slug": "sports",
+      "name": "SPORTS",
+      "description": "Competitive athletic simulations",
+      "icon": "trophy",
+      "gameCount": 1,
+      "color": "#ff6b00",
+      "gradient": "linear-gradient(135deg, #ff6b00, #ffea00)"
+    },
+    {
+      "id": "racing",
+      "slug": "racing",
+      "name": "RACING",
+      "description": "High-speed vehicular competition",
+      "icon": "flag",
+      "gameCount": 2,
+      "color": "#00d4ff",
+      "gradient": "linear-gradient(135deg, #00d4ff, #ff006e)"
+    },
+    {
+      "id": "fighting",
+      "slug": "fighting",
+      "name": "FIGHTING",
+      "description": "One-on-one combat mastery",
+      "icon": "boxing-glove",
+      "gameCount": 0,
+      "color": "#ff006e",
+      "gradient": "linear-gradient(135deg, #ff006e, #ff6b00)"
+    },
+    {
+      "id": "puzzle",
+      "slug": "puzzle",
+      "name": "PUZZLE",
+      "description": "Mind-bending challenges",
+      "icon": "puzzle",
+      "gameCount": 0,
+      "color": "#bc13fe",
+      "gradient": "linear-gradient(135deg, #bc13fe, #39ff14)"
+    },
+    {
+      "id": "horror",
+      "slug": "horror",
+      "name": "HORROR",
+      "description": "Fear-inducing atmospheric experiences",
+      "icon": "skull",
+      "gameCount": 1,
+      "color": "#ff006e",
+      "gradient": "linear-gradient(135deg, #ff006e, #8b0000)"
+    },
+    {
+      "id": "indie",
+      "slug": "indie",
+      "name": "INDIE",
+      "description": "Unique creative experiences from small teams",
+      "icon": "sparkles",
+      "gameCount": 4,
+      "color": "#39ff14",
+      "gradient": "linear-gradient(135deg, #39ff14, #bc13fe)"
+    },
+    {
+      "id": "arcade",
+      "slug": "arcade",
+      "name": "ARCADE",
+      "description": "Classic arcade action and high scores",
+      "icon": "gamepad-2",
+      "gameCount": 1,
+      "color": "#ffea00",
+      "gradient": "linear-gradient(135deg, #ffea00, #ff006e)"
+    },
+    {
+      "id": "multiplayer",
+      "slug": "multiplayer",
+      "name": "MULTIPLAYER",
+      "description": "Co-op and competitive online play",
+      "icon": "users",
+      "gameCount": 2,
+      "color": "#00d4ff",
+      "gradient": "linear-gradient(135deg, #00d4ff, #bc13fe)"
+    },
+    {
+      "id": "vr",
+      "slug": "vr",
+      "name": "VR",
+      "description": "Immersive virtual reality experiences",
+      "icon": "headset",
+      "gameCount": 1,
+      "color": "#bc13fe",
+      "gradient": "linear-gradient(135deg, #bc13fe, #00d4ff)"
+    }
+  ]
+}

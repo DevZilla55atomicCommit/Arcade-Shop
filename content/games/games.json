@@ -1,0 +1,292 @@
+{
+  "games": [
+    {
+      "id": "1",
+      "slug": "neon-drifter",
+      "title": "NEON DRIFTER",
+      "description": "Race through infinite neon highways in this retro-futuristic arcade racer. Master the drift, collect power-ups, and chase high scores across procedurally generated tracks that pulse to the beat of an original synthwave soundtrack.",
+      "shortDescription": "Retro-futuristic arcade racer with infinite neon highways and synthwave soundtrack.",
+      "price": 14.99,
+      "originalPrice": 19.99,
+      "discount": 25,
+      "images": [
+        "/images/games/neon-drifter/hero.jpg",
+        "/images/games/neon-drifter/screenshot-1.jpg",
+        "/images/games/neon-drifter/screenshot-2.jpg",
+        "/images/games/neon-drifter/screenshot-3.jpg"
+      ],
+      "thumbnail": "/images/games/neon-drifter/thumb.jpg",
+      "category": "racing",
+      "tags": ["arcade", "racing", "synthwave", "procedural", "high-score"],
+      "rating": 4.8,
+      "reviewCount": 1247,
+      "releaseDate": "2024-03-15",
+      "developer": "Pixel Pulse Games",
+      "publisher": "Arcade Vault Publishing",
+      "platforms": ["pc", "ps5", "xbox", "switch"],
+      "genres": ["Racing", "Arcade", "Action"],
+      "features": ["Online Leaderboards", "Photo Mode", "Custom Soundtracks", "VR Support"],
+      "systemRequirements": {
+        "minimum": {
+          "os": "Windows 10 64-bit",
+          "processor": "Intel Core i5-6600K / AMD Ryzen 5 1600",
+          "memory": "8 GB RAM",
+          "graphics": "NVIDIA GTX 970 / AMD RX 570",
+          "storage": "5 GB available space"
+        },
+        "recommended": {
+          "os": "Windows 11 64-bit",
+          "processor": "Intel Core i7-10700K / AMD Ryzen 7 5800X",
+          "memory": "16 GB RAM",
+          "graphics": "NVIDIA RTX 3070 / AMD RX 6800",
+          "storage": "5 GB SSD"
+        }
+      },
+      "screenshots": [
+        "/images/games/neon-drifter/screenshot-1.jpg",
+        "/images/games/neon-drifter/screenshot-2.jpg",
+        "/images/games/neon-drifter/screenshot-3.jpg"
+      ],
+      "trailerUrl": "https://youtube.com/watch?v=example1"
+    },
+    {
+      "id": "2",
+      "slug": "pixel-warrior",
+      "title": "PIXEL WARRIOR",
+      "description": "A love letter to 16-bit action platformers. Slash, dash, and spell-cast through hand-crafted levels filled with secrets, challenging bosses, and a deep combat system that rewards mastery. Features a haunting chiptune soundtrack by renowned composer Yuzo Koshiro.",
+      "shortDescription": "16-bit action platformer with deep combat, secrets, and chiptune soundtrack.",
+      "price": 19.99,
+      "originalPrice": null,
+      "discount": null,
+      "images": [
+        "/images/games/pixel-warrior/hero.jpg",
+        "/images/games/pixel-warrior/screenshot-1.jpg",
+        "/images/games/pixel-warrior/screenshot-2.jpg"
+      ],
+      "thumbnail": "/images/games/pixel-warrior/thumb.jpg",
+      "category": "action",
+      "tags": ["platformer", "metroidvania", "pixel-art", "chiptune", "boss-rush"],
+      "rating": 4.9,
+      "reviewCount": 3421,
+      "releaseDate": "2024-01-20",
+      "developer": "Retro Forge Studios",
+      "publisher": "Arcade Vault Publishing",
+      "platforms": ["pc", "ps5", "xbox", "switch"],
+      "genres": ["Action", "Platformer", "Adventure"],
+      "features": ["New Game+", "Boss Rush Mode", "Speedrun Timer", "Accessibility Options"],
+      "systemRequirements": {
+        "minimum": {
+          "os": "Windows 10 64-bit",
+          "processor": "Intel Core i3-6100 / AMD FX-6300",
+          "memory": "4 GB RAM",
+          "graphics": "Integrated Graphics (Intel HD 520)",
+          "storage": "2 GB available space"
+        },
+        "recommended": {
+          "os": "Windows 11 64-bit",
+          "processor": "Intel Core i5-8400 / AMD Ryzen 5 3600",
+          "memory": "8 GB RAM",
+          "graphics": "NVIDIA GTX 1050 / AMD RX 560",
+          "storage": "2 GB SSD"
+        }
+      },
+      "screenshots": [
+        "/images/games/pixel-warrior/screenshot-1.jpg",
+        "/images/games/pixel-warrior/screenshot-2.jpg"
+      ],
+      "trailerUrl": "https://youtube.com/watch?v=example2"
+    },
+    {
+      "id": "3",
+      "slug": "void-station",
+      "title": "VOID STATION",
+      "description": "Survive the depths of an abandoned research station orbiting a black hole. Manage oxygen, power, and sanity while uncovering the cosmic horror that befell the crew. Features dynamic lighting, procedural events, and multiple endings based on your choices.",
+      "shortDescription": "Cosmic horror survival sim on a doomed space station with multiple endings.",
+      "price": 24.99,
+      "originalPrice": 29.99,
+      "discount": 17,
+      "images": [
+        "/images/games/void-station/hero.jpg",
+        "/images/games/void-station/screenshot-1.jpg",
+        "/images/games/void-station/screenshot-2.jpg",
+        "/images/games/void-station/screenshot-3.jpg",
+        "/images/games/void-station/screenshot-4.jpg"
+      ],
+      "thumbnail": "/images/games/void-station/thumb.jpg",
+      "category": "horror",
+      "tags": ["survival", "horror", "sci-fi", "choices-matter", "atmospheric"],
+      "rating": 4.7,
+      "reviewCount": 892,
+      "releaseDate": "2024-05-10",
+      "developer": "Dark Sector Interactive",
+      "publisher": "Arcade Vault Publishing",
+      "platforms": ["pc", "ps5", "xbox"],
+      "genres": ["Horror", "Survival", "Simulation"],
+      "features": ["Dynamic Sanity System", "Multiple Endings", "Photo Mode", "Ray Traced Lighting"],
+      "systemRequirements": {
+        "minimum": {
+          "os": "Windows 10 64-bit",
+          "processor": "Intel Core i5-8400 / AMD Ryzen 5 2600",
+          "memory": "12 GB RAM",
+          "graphics": "NVIDIA GTX 1060 6GB / AMD RX 580 8GB",
+          "storage": "25 GB available space"
+        },
+        "recommended": {
+          "os": "Windows 11 64-bit",
+          "processor": "Intel Core i7-11700K / AMD Ryzen 7 5800X",
+          "memory": "16 GB RAM",
+          "graphics": "NVIDIA RTX 3080 / AMD RX 6800 XT",
+          "storage": "25 GB NVMe SSD"
+        }
+      },
+      "screenshots": [
+        "/images/games/void-station/screenshot-1.jpg",
+        "/images/games/void-station/screenshot-2.jpg",
+        "/images/games/void-station/screenshot-3.jpg",
+        "/images/games/void-station/screenshot-4.jpg"
+      ],
+      "trailerUrl": "https://youtube.com/watch?v=example3"
+    },
+    {
+      "id": "4",
+      "slug": "arcade-legends-collection",
+      "title": "ARCADE LEGENDS COLLECTION",
+      "description": "The definitive collection of 50 classic arcade games from the golden age (1978-1994). Faithfully emulated with modern features: online leaderboards, rewind, save states, CRT filters, cabinet art gallery, and developer documentaries. Includes Pac-Man, Donkey Kong, Galaga, Street Fighter II, and more.",
+      "shortDescription": "50 classic arcade games faithfully emulated with modern features.",
+      "price": 39.99,
+      "originalPrice": 49.99,
+      "discount": 20,
+      "images": [
+        "/images/games/arcade-legends/hero.jpg",
+        "/images/games/arcade-legends/screenshot-1.jpg",
+        "/images/games/arcade-legends/screenshot-2.jpg"
+      ],
+      "thumbnail": "/images/games/arcade-legends/thumb.jpg",
+      "category": "arcade",
+      "tags": ["classic", "collection", "emulation", "retro", "multiplayer"],
+      "rating": 4.9,
+      "reviewCount": 5632,
+      "releaseDate": "2023-11-11",
+      "developer": "Digital Eclipse",
+      "publisher": "Arcade Vault Publishing",
+      "platforms": ["pc", "ps5", "xbox", "switch"],
+      "genres": ["Arcade", "Classic", "Compilation"],
+      "features": ["Online Multiplayer", "CRT Filters", "Save States", "Rewind", "Documentaries", "Cabinet Art Gallery"],
+      "systemRequirements": {
+        "minimum": {
+          "os": "Windows 10 64-bit",
+          "processor": "Intel Core i3-4160 / AMD FX-4350",
+          "memory": "4 GB RAM",
+          "graphics": "Integrated Graphics",
+          "storage": "10 GB available space"
+        },
+        "recommended": {
+          "os": "Windows 11 64-bit",
+          "processor": "Intel Core i5-6500 / AMD Ryzen 3 3200G",
+          "memory": "8 GB RAM",
+          "graphics": "NVIDIA GTX 950 / AMD RX 460",
+          "storage": "10 GB SSD"
+        }
+      },
+      "screenshots": [
+        "/images/games/arcade-legends/screenshot-1.jpg",
+        "/images/games/arcade-legends/screenshot-2.jpg"
+      ],
+      "trailerUrl": "https://youtube.com/watch?v=example4"
+    },
+    {
+      "id": "5",
+      "slug": "cyber-knight",
+      "title": "CYBER KNIGHT",
+      "description": "Top-down twin-stick shooter meets RPG progression. Build your cybernetic knight with hundreds of modular upgrades, conquer procedurally generated sectors, and face massive boss encounters. Supports 4-player co-op with shared progression and competitive leaderboards.",
+      "shortDescription": "Twin-stick shooter RPG with modular upgrades and 4-player co-op.",
+      "price": 17.99,
+      "originalPrice": null,
+      "discount": null,
+      "images": [
+        "/images/games/cyber-knight/hero.jpg",
+        "/images/games/cyber-knight/screenshot-1.jpg",
+        "/images/games/cyber-knight/screenshot-2.jpg"
+      ],
+      "thumbnail": "/images/games/cyber-knight/thumb.jpg",
+      "category": "action",
+      "tags": ["twin-stick", "rpg", "co-op", "procedural", "cyberpunk"],
+      "rating": 4.6,
+      "reviewCount": 2156,
+      "releaseDate": "2024-04-02",
+      "developer": "Neon Core Games",
+      "publisher": "Arcade Vault Publishing",
+      "platforms": ["pc", "ps5", "xbox", "switch"],
+      "genres": ["Action", "RPG", "Shooter"],
+      "features": ["4-Player Co-op", "Modular Builds", "Seasonal Content", "Cross-Platform Play"],
+      "systemRequirements": {
+        "minimum": {
+          "os": "Windows 10 64-bit",
+          "processor": "Intel Core i5-6400 / AMD Ryzen 3 1200",
+          "memory": "8 GB RAM",
+          "graphics": "NVIDIA GTX 960 / AMD RX 470",
+          "storage": "8 GB available space"
+        },
+        "recommended": {
+          "os": "Windows 11 64-bit",
+          "processor": "Intel Core i5-10400F / AMD Ryzen 5 3600",
+          "memory": "16 GB RAM",
+          "graphics": "NVIDIA RTX 2060 / AMD RX 5700",
+          "storage": "8 GB SSD"
+        }
+      },
+      "screenshots": [
+        "/images/games/cyber-knight/screenshot-1.jpg",
+        "/images/games/cyber-knight/screenshot-2.jpg"
+      ],
+      "trailerUrl": "https://youtube.com/watch?v=example5"
+    },
+    {
+      "id": "6",
+      "slug": "retro-racer-64",
+      "title": "RETRO RACER 64",
+      "description": "N64-era inspired low-poly racer with split-screen multiplayer for up to 4 players. Drift through 20 vibrant tracks across 4 championships, unlock 15 unique vehicles, and battle in 6 arena modes. Pure arcade fun with no microtransactions, no battle passes — just racing.",
+      "shortDescription": "N64-inspired low-poly racer with 4-player split-screen and no microtransactions.",
+      "price": 22.99,
+      "originalPrice": null,
+      "discount": null,
+      "images": [
+        "/images/games/retro-racer-64/hero.jpg",
+        "/images/games/retro-racer-64/screenshot-1.jpg",
+        "/images/games/retro-racer-64/screenshot-2.jpg"
+      ],
+      "thumbnail": "/images/games/retro-racer-64/thumb.jpg",
+      "category": "racing",
+      "tags": ["low-poly", "split-screen", "multiplayer", "n64-era", "arcade"],
+      "rating": 4.8,
+      "reviewCount": 1876,
+      "releaseDate": "2024-06-15",
+      "developer": "Polygon Playground",
+      "publisher": "Arcade Vault Publishing",
+      "platforms": ["pc", "ps5", "xbox", "switch"],
+      "genres": ["Racing", "Sports", "Party"],
+      "features": ["4-Player Split-Screen", "20 Tracks", "15 Vehicles", "6 Battle Modes", "No Microtransactions"],
+      "systemRequirements": {
+        "minimum": {
+          "os": "Windows 10 64-bit",
+          "processor": "Intel Core i3-8100 / AMD Ryzen 3 2200G",
+          "memory": "8 GB RAM",
+          "graphics": "NVIDIA GTX 1050 Ti / AMD RX 560",
+          "storage": "6 GB available space"
+        },
+        "recommended": {
+          "os": "Windows 11 64-bit",
+          "processor": "Intel Core i5-11400 / AMD Ryzen 5 5600G",
+          "memory": "16 GB RAM",
+          "graphics": "NVIDIA RTX 3060 / AMD RX 6600",
+          "storage": "6 GB SSD"
+        }
+      },
+      "screenshots": [
+        "/images/games/retro-racer-64/screenshot-1.jpg",
+        "/images/games/retro-racer-64/screenshot-2.jpg"
+      ],
+      "trailerUrl": "https://youtube.com/watch?v=example6"
+    }
+  ]
+}

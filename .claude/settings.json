@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(mkdir:*)",
+      "Bash(rm:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(touch:*)",
+      "Bash(echo:*)",
+      "Read(*",
+      "Write(*",
+      "Edit(*",
+      "Glob(*",
+      "Task(*)"
+    ],
+    "deny": [
+      "Bash(sudo:*)",
+      "Bash(chmod:*)",
+      "Bash(chown:*)"
+    ]
+  },
+  "hooks": {
+    "pre-tool-use": [
+      {
+        "matcher": "Write|Edit",
+        "command": "echo 'File modified' && npm run lint 2>/dev/null || true"
+      }
+    ]
+  },
+  "model": "claude-3-5-sonnet-20241022",
+  "enableAllProjectTools": true
+}
