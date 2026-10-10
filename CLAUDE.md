@@ -119,7 +119,7 @@ Build a smooth-scroll gaming store website with professional animations, arcade 
 | File | Purpose |
 |------|---------|
 | `src/lib/animations.ts` | GSAP/Framer variants, scroll triggers |
-| `src/lib/three-scene.ts` | R3F scene setup, arcade shaders |
+| `src/lib/three-scene.tsx` | R3F scene setup, arcade shaders |
 | `src/components/arcade/` | Arcade-specific components |
 | `src/hooks/useScroll.ts` | Locomotive/GSAP scroll hooks |
 | `src/hooks/useAnimation.ts` | Framer Motion helpers |
