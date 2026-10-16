@@ -1,0 +1,57 @@
+{
+  "name": "gaming-store",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@barba/core": "^2.9.7",
+    "@gsap/react": "^2.1.0",
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.0.0",
+    "gsap": "^3.12.5",
+    "locomotive-scroll": "^4.1.4",
+    "lucide-react": "^0.400.0",
+    "next": "^16.4.1",
+    "next-auth": "^4.24.15",
+    "next-themes": "^0.4.6",
+    "react": "19.0.3",
+    "react-dom": "19.0.3",
+    "tailwind-merge": "^2.3.0",
+    "three": "^0.165.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "@testing-library/jest-dom": "^6.4.0",
+    "@testing-library/react": "^16.3.3",
+    "@types/locomotive-scroll": "^4.1.0",
+    "@types/node": "^20.12.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.164.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^16.4.1",
+    "jsdom": "^24.0.0",
+    "postcss": "^8.4.38",
+    "prettier": "^3.2.0",
+    "prettier-plugin-tailwindcss": "^0.6.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.5.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

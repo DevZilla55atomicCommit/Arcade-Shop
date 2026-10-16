@@ -1,0 +1,47 @@
+# --- Secrets / local env (never commit) ---
+.env
+.env.*
+!.env.example
+
+# --- Node / Next ---
+node_modules/
+.next/
+out/
+build/
+*.tsbuildinfo
+
+# --- Logs / build scratch ---
+*.log
+__dev.log
+__build.log
+_build.log
+_dev.log
+build.log
+build_out.txt
+build_out.txt
+asset-refs.txt
+.__build.log
+.__dev.log
+
+# --- macOS / Finder metadata ---
+._*
+.DS_Store
+.Spotlight-V100
+.AppleDouble
+.LSOverride
+
+# --- Editor / OS ---
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- Test artifacts ---
+test-results/
+playwright-report/
+playwright/.cache/
+coverage/
+
+# --- Claude Code ---
+.claude/
+.claude-code/
