@@ -1,0 +1,68 @@
+# .claudeignore - Files to exclude from Claude Code context
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+.next/
+out/
+build/
+dist/
+
+# Testing
+coverage/
+test-results/
+playwright-report/
+
+# Cache
+.cache/
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# Environment
+.env
+.env*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel/
+
+# Generated images (downloaded at build time)
+public/images/games/*/hero.jpg
+public/images/games/*/thumb.jpg
+public/images/games/*/screenshot-*.jpg
+
+# Large assets
+*.mp4
+*.webm
+*.mov
+*.avi
+
+# Database
+*.db
+*.sqlite
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+temp/
