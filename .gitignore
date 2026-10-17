@@ -3,12 +3,23 @@
 .env.*
 !.env.example
 
-# --- Node / Next ---
+# --- Node / Next / npm cache ---
 node_modules/
 .next/
 out/
 build/
 *.tsbuildinfo
+.npm-cache-local/
+.npm-cache-local/**
+.npm-cache/
+.npm-cache/**
+.npm/
+package-lock.json
+
+# --- Arcade-Shop build scratch (never commit) ---
+Arcade-Shop/.npm-cache-local/
+Arcade-Shop/.npm-cache-local/**
+Arcade-Shop/.asset-refs.txt
 
 # --- Logs / build scratch ---
 *.log
@@ -19,6 +30,7 @@ _dev.log
 build.log
 build_out.txt
 build_out.txt
+.asset-refs.txt
 asset-refs.txt
 .__build.log
 .__dev.log
