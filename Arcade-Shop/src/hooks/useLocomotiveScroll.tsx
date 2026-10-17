@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback, useState } from "react";
+import { useEffect, useRef, useCallback, useMemo, useState } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import { gsap } from "gsap";
@@ -40,31 +40,34 @@ export function useLocomotiveScroll(options: LocomotiveScrollOptions = {}) {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const initialized = useRef(false);
 
-  const defaultOptions: LocomotiveScrollOptions = {
-    el: undefined,
-    smooth: true,
-    smoothMobile: false,
-    direction: "vertical",
-    lerp: 0.08,
-    multiplier: 1,
-    class: "is-reveal",
-    scrollbarClass: "c-scrollbar",
-    scrollingClass: "is-scrolling",
-    draggingClass: "is-dragging",
-    smoothClass: "has-scroll-smooth",
-    initClass: "has-scroll-init",
-    getSpeed: true,
-    getDirection: true,
-    scrollFromAnywhere: true,
-    tablet: {
+  const defaultOptions = useMemo<LocomotiveScrollOptions>(
+    () => ({
+      el: undefined,
       smooth: true,
-      breakpoint: 1024,
-    },
-    smartphone: {
-      smooth: false,
-      breakpoint: 768,
-    },
-  };
+      smoothMobile: false,
+      direction: "vertical",
+      lerp: 0.08,
+      multiplier: 1,
+      class: "is-reveal",
+      scrollbarClass: "c-scrollbar",
+      scrollingClass: "is-scrolling",
+      draggingClass: "is-dragging",
+      smoothClass: "has-scroll-smooth",
+      initClass: "has-scroll-init",
+      getSpeed: true,
+      getDirection: true,
+      scrollFromAnywhere: true,
+      tablet: {
+        smooth: true,
+        breakpoint: 1024,
+      },
+      smartphone: {
+        smooth: false,
+        breakpoint: 768,
+      },
+    }),
+    [],
+  );
 
   const init = useCallback(() => {
     if (initialized.current || typeof window === "undefined") return;
@@ -105,7 +108,7 @@ export function useLocomotiveScroll(options: LocomotiveScrollOptions = {}) {
       locomotiveScrollInstance = null;
       initialized.current = false;
     };
-  }, [options]);
+  }, [options, defaultOptions]);
 
   const update = useCallback(() => {
     locomotiveScrollInstance?.update();
