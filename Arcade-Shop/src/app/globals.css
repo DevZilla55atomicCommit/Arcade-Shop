@@ -5,6 +5,18 @@
   --font-outfit: "Outfit", system-ui, sans-serif;
   --font-jetbrains-mono: "JetBrains Mono", monospace;
 
+  --font-size-display-xl: 4.5rem;
+  --font-size-display-lg: 3.5rem;
+  --font-size-display-md: 2.5rem;
+  --font-size-display-sm: 2rem;
+  --font-size-heading-lg: 2.25rem;
+  --font-size-heading-md: 1.75rem;
+  --font-size-heading-sm: 1.5rem;
+  --font-size-body-lg: 1.25rem;
+  --font-size-body-md: 1rem;
+  --font-size-body-sm: 0.875rem;
+  --font-size-caption: 0.75rem;
+
   --color-arcade-bg-deep: #0a0a0f;
   --color-arcade-bg-elevated: #12121a;
   --color-arcade-bg-card: #1a1a24;
@@ -21,6 +33,13 @@
   --color-arcade-glow-green: rgba(57, 255, 20, 0.4);
   --color-arcade-glow-yellow: rgba(255, 234, 0, 0.4);
   --color-arcade-glow-purple: rgba(188, 19, 254, 0.4);
+
+  --radius-arcade: 1rem;
+  --radius-arcade-lg: 1.5rem;
+  --radius-arcade-sm: 0.5rem;
+  --radius-arcade-xl: 2rem;
+
+  --radius-pixel: 0.25rem;
 }
 
 @layer base {
