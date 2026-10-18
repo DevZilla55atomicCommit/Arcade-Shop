@@ -37,15 +37,15 @@ export const metadata = {
   manifest: "/site.webmanifest",
 };
 
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Navbar } from "@/components/layouts/Navbar";
 import { Footer } from "@/components/layouts/Footer";
 import { Providers } from "@/components/providers/Providers";
 
-const inter = Inter({
-  subsets: ["latin"],
+const inter = localFont({
+  src: "../../public/fonts/inter-variable.ttf",
   variable: "--font-inter",
   display: "swap",
 });
