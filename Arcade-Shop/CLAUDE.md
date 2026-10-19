@@ -67,6 +67,22 @@ Build a smooth-scroll gaming store website with professional animations, arcade 
 
 ---
 
+## ⏸️ PAUSED — Next Task on Resume
+
+**Status: Build green (26 routes prerender, tsc clean, eslint clean, 12/12 tests). Core site wired end-to-end. Taking a break.**
+
+**Next task when we resume (see TODO.md "Execution Plan" for full detail):**
+1. **Finish the WCAG AA accessibility audit** — the immediate next step. All a11y gaps are
+   known (forms, buttons, search, gallery thumbs, Card favorite). Add accessible names, then
+   `npm run build` + `npx tsc --noEmit`, commit on `feat/build-setup`.
+2. **Evaluate Barba.js v2** — decide whether it conflicts with the existing Framer-Motion
+   `PageTransition` in `ScrollSystem` before wiring it in (don't add blindly).
+3. **PinSection / ParallaxSection** — wire the built-but-unused scrolltelling components into a
+   hero sequence (isolate GSAP/Three from Framer Motion; respect reduced-motion).
+4. **Bundle analysis + Lighthouse > 90.**
+
+Resume order: 1 → 2 → 3 → 4. Each step verified build-green before moving on.
+
 ## Phase Plan
 
 ### Phase 1: Foundation & Config

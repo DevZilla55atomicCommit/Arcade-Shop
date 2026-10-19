@@ -75,13 +75,13 @@ export default function AccountPage() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-sm text-arcade-fg-muted">Currency</span>
-                <select className="bg-arcade-bg-elevated border border-arcade-fg-muted/30 text-arcade-fg-primary font-mono text-sm px-3 py-2 rounded-pixel focus:outline-none focus:border-arcade-accent-pink">
+                <select className="bg-arcade-bg-elevated border border-arcade-fg-muted/30 text-arcade-fg-primary font-mono text-sm px-3 py-2 rounded-pixel focus:outline-none focus:border-arcade-accent-pink" aria-label="Currency">
                   <option>USD</option>
                   <option>EUR</option>
                   <option>GBP</option>
                 </select>
               </div>
-              <label className="flex items-center justify-between cursor-pointer">
+              <label className="flex items-center justify-between cursor-pointer gap-4">
                 <span className="font-mono text-sm text-arcade-fg-muted">Reduced motion</span>
                 <input
                   type="checkbox"
@@ -90,7 +90,7 @@ export default function AccountPage() {
                   className="w-5 h-5 accent-arcade-accent-pink"
                 />
               </label>
-              <label className="flex items-center justify-between cursor-pointer">
+              <label className="flex items-center justify-between cursor-pointer gap-4">
                 <span className="font-mono text-sm text-arcade-fg-muted">Notifications</span>
                 <input
                   type="checkbox"
@@ -114,6 +114,7 @@ export default function AccountPage() {
           <div className="flex mb-6 bg-arcade-bg-elevated rounded-arcade p-1">
             <button
               type="button"
+              aria-pressed={mode === "login"}
               onClick={() => setMode("login")}
               className={
                 "flex-1 py-2 font-mono text-sm uppercase tracking-wider rounded-pixel transition-all " +
@@ -139,22 +140,28 @@ export default function AccountPage() {
           ) : mode === "login" ? (
             <>
               <div className="space-y-4">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="EMAIL"
-                  required
-                  className="w-full bg-arcade-bg-elevated border-2 border-arcade-fg-muted/30 text-arcade-fg-primary font-mono text-sm px-4 py-3 rounded-arcade focus:outline-none focus:border-arcade-accent-pink"
-                />
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="PASSWORD"
-                  required
-                  className="w-full bg-arcade-bg-elevated border-2 border-arcade-fg-muted/30 text-arcade-fg-primary font-mono text-sm px-4 py-3 rounded-arcade focus:outline-none focus:border-arcade-accent-pink"
-                />
+                <div>
+                  <label htmlFor="login-email" className="block font-mono text-xs uppercase tracking-wider text-arcade-fg-muted mb-3">EMAIL</label>
+                  <input
+                    id="login-email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="w-full bg-arcade-bg-elevated border-2 border-arcade-fg-muted/30 text-arcade-fg-primary font-mono text-sm px-4 py-3 rounded-arcade focus:outline-none focus:border-arcade-accent-pink"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="login-password" className="block font-mono text-xs uppercase tracking-wider text-arcade-fg-muted mb-3">PASSWORD</label>
+                  <input
+                    id="login-password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="w-full bg-arcade-bg-elevated border-2 border-arcade-fg-muted/30 text-arcade-fg-primary font-mono text-sm px-4 py-3 rounded-arcade focus:outline-none focus:border-arcade-accent-pink"
+                  />
+                </div>
                 <button
                   type="submit"
                   className="w-full py-3 font-mono text-sm uppercase tracking-wider bg-arcade-accent-pink text-arcade-bg-deep rounded-arcade hover:neon-glow-pink transition-all"
@@ -166,30 +173,39 @@ export default function AccountPage() {
           ) : (
             <>
               <div className="space-y-4">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="EMAIL"
-                  required
-                  className="w-full bg-arcade-bg-elevated border-2 border-arcade-fg-muted/30 text-arcade-fg-primary font-mono text-sm px-4 py-3 rounded-arcade focus:outline-none focus:border-arcade-accent-pink"
-                />
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                <div>
+                  <label htmlFor="register-email" className="block font-mono text-xs uppercase tracking-wider text-arcade-fg-muted mb-3">EMAIL</label>
+                  <input
+                    id="register-email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="w-full bg-arcade-bg-elevated border-2 border-arcade-fg-muted/30 text-arcade-fg-primary font-mono text-sm px-4 py-3 rounded-arcade focus:outline-none focus:border-arcade-accent-pink"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="register-username" className="block font-mono text-xs uppercase tracking-wider text-arcade-fg-muted mb-3">USERNAME</label>
+                  <input
+                    id="register-username"
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                   placeholder="USERNAME"
                   required
                   className="w-full bg-arcade-bg-elevated border-2 border-arcade-fg-muted/30 text-arcade-fg-primary font-mono text-sm px-4 py-3 rounded-arcade focus:outline-none focus:border-arcade-accent-pink"
                 />
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="PASSWORD"
-                  required
-                  className="w-full bg-arcade-bg-elevated border-2 border-arcade-fg-muted/30 text-arcade-fg-primary font-mono text-sm px-4 py-3 rounded-arcade focus:outline-none focus:border-arcade-accent-pink"
-                />
+                <div>
+                  <label htmlFor="register-password" className="block font-mono text-xs uppercase tracking-wider text-arcade-fg-muted mb-3">PASSWORD</label>
+                  <input
+                    id="register-password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="w-full bg-arcade-bg-elevated border-2 border-arcade-fg-muted/30 text-arcade-fg-primary font-mono text-sm px-4 py-3 rounded-arcade focus:outline-none focus:border-arcade-accent-pink"
+                  />
+                </div>
                 <button
                   type="submit"
                   className="w-full py-3 font-mono text-sm uppercase tracking-wider bg-arcade-accent-pink text-arcade-bg-deep rounded-arcade hover:neon-glow-pink transition-all"

@@ -94,6 +94,7 @@ export default function GameDetail() {
               <button
                 key={img}
                 onClick={() => setSelectedImage(i)}
+                aria-label={`${game.title} image ${i + 1} of ${images.length}`}
                 className={
                   "w-20 h-28 rounded-arcade overflow-hidden bg-arcade-bg-elevated border-2 transition-colors " +
                   (i === selectedImage ? "border-arcade-accent-pink" : "border-transparent opacity-60")

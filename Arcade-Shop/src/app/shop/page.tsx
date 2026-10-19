@@ -108,6 +108,7 @@ export default function Shop() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="SEARCH GAMES..."
+              aria-label="Search games"
               className="w-full bg-arcade-bg-card border-2 border-arcade-fg-muted/30 text-arcade-fg-primary font-mono text-sm px-4 py-3 rounded-arcade focus:outline-none focus:border-arcade-accent-pink focus:neon-glow-pink"
             />
           </div>

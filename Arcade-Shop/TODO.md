@@ -163,14 +163,88 @@ shipping have data-driven content). Remaining content work:
       trailer 100%). All 6 games' assets already converted to WebP (q75/m6, 27 files).
       Note: `ReviewCard` avatar stays a plain `<img>` on purpose — avatars are external
       URLs, not local assets.
-- [ ] Font subsetting + preload (Inter variable self-hosted)
+- [x] Font subsetting + preload (Inter variable self-hosted) — `next/font/local`
+      auto-generates the preload + CSS variable and injects it at build time. Removed
+      dead preconnect links to Google Fonts (Space Grotesk/Outfit/JetBrains Mono aren't
+      installed; type stack falls back to system-ui). No external font requests remain.
 - [ ] Bundle analysis + Lighthouse > 90
-- [ ] Reduced motion support (verify)
+- [x] Reduced motion support (verify) — `ScrollSystem` disables Locomotive/GSAP/PageTransition
+      under `prefers-reduced-motion`; globals.css zeroes animation/transition durations.
+      Hardened with `transition-delay: 0.01ms !important` too.
 - [ ] Accessibility audit (WCAG AA)
 
 ---
 
+## Remaining Work — Execution Plan
+
+> We're pausing here. The build is green (26 routes prerender, tsc clean, eslint clean,
+> 12/12 tests) and the core site is wired end-to-end. What's left is a smaller set of
+> polish/feature tasks. Below is the ordered plan to finish the project. **Resume order:**
+> 1 → 2 → 3 → 4. Each step is build-green-verified before moving on.
+
+### 1. Finish WCAG AA accessibility audit (in progress — immediate next step)
+- **What's left:** finish accessible-name gaps, then typecheck + build + commit on
+  `feat/build-setup`.
+- **Known gaps:**
+  - Product gallery thumbnail buttons (`src/app/g/[slug]/page.tsx`) now have `aria-label`
+    (`${title} image ${i+1} of ${images.length}`) — DONE.
+  - Card favorite button (`src/components/ui/Card.tsx`) — added `aria-label` + `aria-pressed`
+    (toggles favorite state) — DONE.
+  - Checkout `Field` component (`src/app/cart/checkout/page.tsx`) — already label+id paired
+    for name/email/address/city/zip/card/expiry/cvc — OK.
+  - `NewsletterForm` — `sr-only` label "Email address" + `id="newsletter-email"` — OK.
+  - `CategoryTabs` / `PlatformBadges` — `role="group"` with aria-label + visible `ALL`/`NAME
+    (count)` text — OK.
+  - `GameSort` (dropdown) — button has visible selected label + `aria-expanded`/`aria-haspopup`;
+    options are `role="option"` buttons with visible text — OK.
+  - `RatingStars` — `role="img"` wrapper with `aria-label="${rating} out of ${max} stars"`;
+    individual stars have `aria-label="${n} star(s)"` — OK.
+  - `WishlistButton` — icon-only button with `aria-label` (Add/Remove from wishlist) +
+    `aria-pressed` — OK.
+  - `AddToCart` / `BuyNow` — visible "BUY NOW" text — OK.
+  - `Navbar` — cart link has `aria-label="Cart"`; mobile toggle has `aria-label` +
+    `aria-expanded`/`aria-controls` — OK.
+  - `Account` forms — login/register inputs have `<label htmlFor>` + matching `id`, wrapped
+    in `<form onSubmit>`; toggle buttons have `aria-pressed={mode === "login"}`;
+    Preferences currency `<select>` has `aria-label="Currency"`; reduced-motion +
+    notifications checkboxes are inside `<label>` wrappers (accessible name = label text) —
+    DONE.
+  - Shop search input — added `aria-label="Search games"` — DONE.
+- **Verify:** `npm run build` EXIT=0, `npx tsc --noEmit` clean.
+- **Commit:** `feat(a11y): add accessible names to forms, buttons, search + fix account form structure`
+  with `Co-Authored-By: Claude Code <noreply@anthropic.com>`.
+- **Note:** the account page had a broken nested-`<form>` structure (my a11y edits introduced
+  nested forms, which is invalid JSX). Fixed by moving the inner `<form>` back to `<div>`
+  wrappers inside the outer `<form>` — re-verify structure stays valid.
+
+### 2. Barba.js v2 — seamless page transitions
+- **What:** import `@barba/core` into the root layout for seamless (crossfade) page transitions.
+- **Decision to make:** the root layout already has a `PageTransition` system (part of
+  `ScrollSystem`, built on Framer Motion + Locomotive). Barba may conflict with / duplicate it.
+  Recommended approach: **evaluate first** — check whether PageTransition already delivers the
+  intended effect; if so, either (a) drop Barba to avoid double-transitions, or (b) use Barba
+  ONLY for full-route navigations and keep ScrollSystem for scroll-driven reveals. Do not add
+  Barba blindly.
+- **Verify:** build green, no prerender crash, transitions render.
+
+### 3. PinSection / ParallaxSection — scrolltelling hero sequence
+- **What:** wire the built-but-unused `PinSection` / `ParallaxSection` components into a
+  scrolltelling hero sequence (home hero or a dedicated scroll page).
+- **Rule:** isolate GSAP/Three.js from Framer Motion per component tree; respect
+  `prefers-reduced-motion`.
+- **Verify:** build green, no CSS/layout shift, reduced-motion path works.
+
+### 4. Bundle analysis + Lighthouse > 90
+- **What:** run `next bundle-analysis`, review for oversized/unused chunks, and get Lighthouse
+  performance > 90. Prioritize: font preload (already done), image optimization (done), and
+  any heavy runtime deps (GSAP/Three/Locomotive). Add reduced-motion + accessibility to the
+  Lighthouse pass too.
+- **Verify:** Lighthouse numbers captured in CHANGELOG/PROJECT-STATUS.
+
+---
+
 ## Test Notes
+
 
 - Vitest config: `tests/unit/utils.test.ts` (12 tests) — `src/lib/utils.ts` (cn/merge, formatPrice, slugify, etc.)
 - Add coverage for: `formatPrice`, `slugify`, `cn` variants, game data helpers as pages grow.
