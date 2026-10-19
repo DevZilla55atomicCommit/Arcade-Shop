@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/Button";
+import { AnimatePresence } from "framer-motion";
 
 interface ShareButtonProps {
   url?: string;
@@ -9,7 +12,11 @@ interface ShareButtonProps {
   className?: string;
 }
 
-export function ShareButton({ url = typeof window !== "undefined" ? window.location.href : "", title = document.title, className }: ShareButtonProps) {
+export function ShareButton({
+  url = typeof window !== "undefined" ? window.location.href : "",
+  title = typeof document !== "undefined" ? document.title : "Arcade-Shop",
+  className,
+}: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
   const [showShare, setShowShare] = useState(false);
 
@@ -127,6 +134,3 @@ export function ShareButton({ url = typeof window !== "undefined" ? window.locat
   );
 }
 
-import { useState } from "react";
-import { Button } from "@/components/ui/Button";
-import { AnimatePresence } from "framer-motion";

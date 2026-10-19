@@ -3,6 +3,8 @@
 import { useWishlist } from "@/context/WishlistContext";
 import { useGamesData } from "@/lib/games-data";
 import { GameGrid } from "@/components/arcade/GameGrid";
+import { RelatedGames } from "@/components/arcade/RelatedGames";
+import { ShareButton } from "@/components/arcade/ShareButton";
 
 export default function WishlistPage() {
   const { state, toggleItem, count } = useWishlist();
@@ -20,12 +22,18 @@ export default function WishlistPage() {
   const wishlisted = items
     .map((id) => games.find((g) => g.id === id))
     .filter(Boolean) as any[];
+  const related = wishlisted.length
+    ? games.filter((g) => g.category === wishlisted[0].category && !items.includes(g.id)).slice(0, 4)
+    : [];
 
   return (
     <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-16">
-      <div className="mb-10">
-        <h1 className="font-display text-display-md text-arcade-fg-primary mb-3">WISHLIST</h1>
-        <p className="text-body-md text-arcade-fg-muted">{count} game{count !== 1 ? "s" : ""} saved</p>
+      <div className="mb-10 flex items-center justify-between">
+        <div>
+          <h1 className="font-display text-display-md text-arcade-fg-primary mb-3">WISHLIST</h1>
+          <p className="text-body-md text-arcade-fg-muted">{count} game{count !== 1 ? "s" : ""} saved</p>
+        </div>
+        <ShareButton />
       </div>
 
       {wishlisted.length === 0 ? (
@@ -36,7 +44,10 @@ export default function WishlistPage() {
           </a>
         </div>
       ) : (
-        <GameGrid games={wishlisted} columns={4} />
+        <>
+          <GameGrid games={wishlisted} columns={4} />
+          {related.length > 0 && <RelatedGames games={related} title="More from this genre" />}
+        </>
       )}
     </div>
   );

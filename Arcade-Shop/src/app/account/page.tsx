@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { useUser } from "@/context/UserContext";
 import { useWishlist } from "@/context/WishlistContext";
+import { useGamesData } from "@/lib/games-data";
+import { GameGrid } from "@/components/arcade/GameGrid";
 
 export default function AccountPage() {
   const { state, login, register, logout, updatePreferences } = useUser();
   const isLoading = state.isLoading;
   const { count } = useWishlist();
+  const { games, ready } = useGamesData();
 
   const [mode, setMode] = useState<"login" | "register">("login");
   const [email, setEmail] = useState("");
@@ -55,6 +58,16 @@ export default function AccountPage() {
                 <div className="font-mono text-xs text-arcade-fg-muted mt-1">Credits</div>
               </div>
             </div>
+          </section>
+
+          <section className="bg-arcade-bg-card rounded-arcade-lg card-glow p-8">
+            <h2 className="font-display text-heading-lg text-arcade-fg-primary mb-6">LIBRARY</h2>
+            <p className="font-mono text-sm text-arcade-fg-muted mb-4">Your purchased games</p>
+            {games.length === 0 ? (
+              <p className="font-mono text-sm text-arcade-fg-muted">You haven&rsquo;t purchased any games yet.</p>
+            ) : (
+              <GameGrid games={games} columns={4} />
+            )}
           </section>
 
           <section className="bg-arcade-bg-card rounded-arcade-lg card-glow p-8">

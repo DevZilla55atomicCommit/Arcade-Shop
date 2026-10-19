@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { NewsletterForm } from "@/components/arcade/NewsletterForm";
+import { CookieBanner } from "@/components/arcade/CookieBanner";
 
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
@@ -86,6 +87,11 @@ export default function Contact() {
               await new Promise((r) => setTimeout(r, 400));
             }}
             className="bg-arcade-bg-card rounded-arcade-lg card-glow border border-arcade-accent-pink/20 p-8 sm:p-12"
+          />
+
+          <CookieBanner
+            onAccept={() => window.alert("Consent recorded — analytics would initialize here.")}
+            onDecline={() => window.alert("Consent declined — analytics remain disabled.")}
           />
 
           <div className="bg-arcade-bg-card rounded-arcade-lg card-glow p-8">

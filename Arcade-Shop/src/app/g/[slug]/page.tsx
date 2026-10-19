@@ -7,6 +7,9 @@ import { PlatformBadges } from "@/components/arcade/PlatformBadges";
 import { RatingStars } from "@/components/arcade/RatingStars";
 import { ReviewList } from "@/components/arcade/ReviewCard";
 import { RelatedGames } from "@/components/arcade/RelatedGames";
+import { AddToCart, BuyNow } from "@/components/arcade/AddToCart";
+import { WishlistButton } from "@/components/arcade/WishlistButton";
+import { ShareButton } from "@/components/arcade/ShareButton";
 import { formatPrice } from "@/lib/utils";
 
 interface Game {
@@ -166,6 +169,15 @@ export default function GameDetail() {
           </div>
         </div>
       </article>
+
+      <section className="sticky top-24 z-20 mb-8 rounded-arcade-lg bg-arcade-bg-card/90 p-4 backdrop-blur border border-arcade-fg-muted/20">
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <AddToCart gameId={game.slug} title={game.title} price={game.price} />
+          <BuyNow gameId={game.slug} title={game.title} price={game.price} />
+          <WishlistButton gameId={game.slug} size="lg" className="flex-1" />
+          <ShareButton />
+        </div>
+      </section>
 
       <section className="py-12">
         <h2 className="font-display text-heading-lg text-arcade-fg-primary mb-8">REVIEWS</h2>
