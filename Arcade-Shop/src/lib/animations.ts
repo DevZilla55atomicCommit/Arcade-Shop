@@ -144,7 +144,7 @@ export const scrollReveal = (
 
   gsap.fromTo(
     elements,
-    { y, x, scale, opacity, force3D: true },
+    { y, x, scale, opacity, force: false },
     {
       y: 0,
       x: 0,

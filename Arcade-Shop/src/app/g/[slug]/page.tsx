@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { useGamesData } from "@/lib/games-data";
 import { PlatformBadges } from "@/components/arcade/PlatformBadges";
 import { RatingStars } from "@/components/arcade/RatingStars";
@@ -31,11 +31,23 @@ interface Game {
   features: string[];
 }
 
+const locationStore = {
+  subscribe: (onStoreChange: () => void) => {
+    let active = true;
+    return () => {
+      active = false;
+    };
+  },
+  getSnapshot: () => window.location.pathname,
+};
+
 export default function GameDetail() {
   const { games, getGameBySlug } = useGamesData();
   const [selectedImage, setSelectedImage] = useState(0);
 
-  const game = getGameBySlug(window.location.pathname.split("/").slice(1).join("/"));
+  const path: string = useSyncExternalStore(locationStore.subscribe, locationStore.getSnapshot);
+  const slug = path.split("/")[1] ?? "";
+  const game = getGameBySlug(slug);
   const related = game
     ? games.filter((g) => g.category === game.category && g.slug !== game.slug).slice(0, 4)
     : [];

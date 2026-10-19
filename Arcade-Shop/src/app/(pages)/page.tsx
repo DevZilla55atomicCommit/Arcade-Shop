@@ -1,15 +1,30 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { useGamesData } from "@/lib/games-data";
 import { GAME_CATEGORIES } from "@/types";
 import { Hero } from "@/components/arcade/Hero";
 import { GameGrid } from "@/components/arcade/GameGrid";
-import { CategoryCard } from "@/components/ui/Card";
+import { CategoryCard, GameCard } from "@/components/ui/Card";
+import { MagneticCard } from "@/components/arcade/MagneticButton";
 import { NewsletterForm } from "@/components/arcade/NewsletterForm";
 import { formatPrice } from "@/lib/utils";
+import { scrollReveal } from "@/lib/animations";
 
 export default function Home() {
   const { games, categories, ready } = useGamesData();
+
+  // Scrolltelling reveal for the spotlight grid — GSAP ScrollTrigger (not Framer
+  // Motion), isolated from the hero's Motion components above.
+  const initFeaturedReveal = () => {
+    if (typeof window === "undefined") return;
+    scrollReveal("[data-featured-reveal]", { opacity: 0, y: 30, stagger: 0.08, duration: 0.6 });
+  };
+
+  useEffect(() => {
+    initFeaturedReveal();
+  }, [initFeaturedReveal]);
 
   if (!ready) {
     return (
@@ -35,7 +50,9 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {categoriesList.map((category) => (
-            <CategoryCard key={category.slug} category={category} />
+            <MagneticCard key={category.slug} strength={0.12} radius={120}>
+              <CategoryCard category={category} />
+            </MagneticCard>
           ))}
         </div>
       </section>
@@ -51,6 +68,22 @@ export default function Home() {
           </a>
         </div>
         <GameGrid games={featured} columns={4} />
+      </section>
+
+      <section className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-20">
+        <div className="mb-10 text-center">
+          <h2 className="font-display text-display-md text-arcade-fg-primary mb-3">IN THE SPOTLIGHT</h2>
+          <p className="text-body-md text-arcade-fg-muted max-w-xl mx-auto">
+            Scroll to meet the titles we&rsquo;re most excited about.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6" data-featured-reveal>
+          {featured.map((game) => (
+            <div key={game.slug} className="h-80">
+              <GameCard game={game} />
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-20">

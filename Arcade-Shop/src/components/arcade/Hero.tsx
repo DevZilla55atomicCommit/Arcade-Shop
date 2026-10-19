@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Hero3DBackground } from "@/lib/three-scene";
+import { RGBShift } from "@/components/arcade/Scanlines";
+import { CRTOverlay, CRTCurvature } from "@/components/arcade/CRTOverlay";
+import { MagneticButton } from "@/components/arcade/MagneticButton";
 
 interface HeroProps {
   className?: string;
@@ -14,7 +17,10 @@ export function Hero({ className }: HeroProps) {
     <section className={cn("relative min-h-screen flex items-center justify-center overflow-hidden", className)} aria-labelledby="hero-title">
       <Hero3DBackground />
       <div className="absolute inset-0 bg-scanlines opacity-10 pointer-events-none" aria-hidden="true" />
+      <RGBShift intensity={3} />
       <div className="absolute inset-0 bg-gradient-to-b from-arcade-bg-deep via-transparent to-arcade-bg-deep/50 pointer-events-none" aria-hidden="true" />
+      <CRTOverlay intensity={0.12} />
+      <CRTCurvature intensity={0.3} />
 
       <div className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-20 z-10">
         <motion.div

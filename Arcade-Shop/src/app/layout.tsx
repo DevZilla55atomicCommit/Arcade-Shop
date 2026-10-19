@@ -43,6 +43,7 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/layouts/Navbar";
 import { Footer } from "@/components/layouts/Footer";
 import { Providers } from "@/components/providers/Providers";
+import { ScrollSystem } from "@/components/scroll/ScrollSystem";
 
 const inter = localFont({
   src: "../../public/fonts/inter-variable.ttf",
@@ -65,7 +66,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           <main id="main-content" className="relative z-10">
-            {children}
+            <ScrollSystem className="relative z-10">{children}</ScrollSystem>
           </main>
           <Footer />
         </Providers>
