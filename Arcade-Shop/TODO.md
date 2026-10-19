@@ -8,6 +8,11 @@
 > layer (shop, cart, wishlist, categories, best-sellers, top-rated, sale, new-releases,
 > product detail) and the animation/scroll systems are wired into the root layout. The
 > real remaining work is **page content** (Phase 3) and **polish/perf** (Phase 4).
+>
+> **Latest commit (7d59af2):** interactive components wired into pages (product action bar,
+> wishlist share+related, account library, contact cookie banner) and a new multi-step
+> `/cart/checkout` flow (shipping → payment → review → done). Fixed `ShareButton` prerender
+> crash (`document.title` at module scope → guarded with `typeof document`).
 
 > **Build fix log:** the production build failed repeatedly with `ReferenceError: document
 > is not defined` at `.next/server/chunks/125.js:9` — a shared chunk bundling Locomotive
@@ -111,12 +116,17 @@ into the smooth-scroll, scroll-driven, page-transitioning arcade experience from
       the build-time server component through `useGamesData`.
 - [x] **Scanlines / CRTOverlay** — `Scanlines` + `CRTOverlay`/`CRTCurvature` are used inside
       `Hero` (CRT scanline shader, RGB-shift). Respect `prefers-reduced-motion` on all.
-- [ ] **Barba.js v2** — import `@barba/core` into layout for seamless page transitions. (`@barba/core` installed, never imported)
-- [ ] **PinSection / ParallaxSection** — wire these into a scrolltelling hero sequence (e.g. home or a dedicated scroll page). (complete, not yet used)
 - [x] **MagneticButton** — use on CTA buttons (hero "Play Now", category cards). (complete, not yet used)
 - [x] **BackToTop / ScrollProgress** — wired into root layout (complete, now in use).
-- [ ] **PinSection / ParallaxSection** — wire these into a scrolltelling hero sequence (e.g. home or a dedicated scroll page). (complete, not yet used)
+- [x] **RelatedGames** — wired into product detail (`/g/[slug]`) and wishlist (`/wishlist`)
+      via same-category filtering.
+- [x] **ShareButton / WishlistButton** — wired into product detail + wishlist pages.
+      `ShareButton` default `document.title` was crashing server prerender (module-scope
+      global); now guarded with `typeof document !== "undefined"`.
+- [x] **NewsletterForm** — wired into home + contact pages.
+- [x] **CookieBanner** — wired into contact page (accept/decline handlers).
 - [ ] **Barba.js v2** — import `@barba/core` into layout for seamless page transitions. (`@barba/core` installed, never imported)
+- [ ] **PinSection / ParallaxSection** — wire these into a scrolltelling hero sequence (e.g. home or a dedicated scroll page). (complete, not yet used)
 
 > Rule from CLAUDE.md: isolate GSAP/Three.js from Framer Motion per component tree.
 > Respect `prefers-reduced-motion` on every animation.
@@ -127,12 +137,17 @@ Most pages are **already wired to the data layer** (verified: shop/cart/wishlist
 best-sellers/top-rated/sale/new-releases all render data; about/blog/careers/help/faq/refunds/
 shipping have data-driven content). Remaining content work:
 
-- [ ] **Product detail** (`/g/[slug]`) — finalize gallery, specs, reviews, add-to-cart. (partial: `ReviewCard`/`ReviewForm`/`AddToCart`/`PlatformBadges`/`PriceDisplay`/`SystemRequirements`/`GameTrailer` available)
-- [ ] **Cart / Checkout** (`/cart`) — arcade UI wired to `CartContext`; add multi-step checkout flow. (wired, needs checkout)
-- [ ] **Wishlist** (`/wishlist`) — wired to `WishlistContext` (wired, needs ShareButton/related games).
-- [ ] **Account** (`/account`) — wired to `UserContext` (wired, needs profile/library/settings tabs).
-- [ ] **Related games** (`RelatedGames`) — wire into product pages. (orphaned)
-- [ ] **NewsletterForm / CookieBanner / ShareButton / BackToTop** — wire into relevant pages. (orphaned)
+- [x] **Product detail** (`/g/[slug]`) — finalized: gallery, rating, price/discount,
+      platforms/genres/features, reviews, RelatedGames, and a new sticky action bar
+      (AddToCart + BuyNow + WishlistButton + ShareButton).
+- [x] **Cart / Checkout** (`/cart`) — arcade UI wired to `CartContext`; added multi-step
+      `/cart/checkout` flow (shipping → payment → review → done).
+- [x] **Wishlist** (`/wishlist`) — wired to `WishlistContext` + `RelatedGames` by genre +
+      `ShareButton` header.
+- [x] **Account** (`/account`) — wired to `UserContext` + Library grid (purchased games) +
+      Preferences.
+- [ ] **Barba.js v2** — import `@barba/core` into layout for seamless page transitions. (`@barba/core` installed, never imported)
+- [ ] **PinSection / ParallaxSection** — wire these into a scrolltelling hero sequence (e.g. home or a dedicated scroll page). (complete, not yet used)
 
 ### Phase 4 — Polish & Performance
 
