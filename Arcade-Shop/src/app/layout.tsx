@@ -44,6 +44,7 @@ import { Navbar } from "@/components/layouts/Navbar";
 import { Footer } from "@/components/layouts/Footer";
 import { Providers } from "@/components/providers/Providers";
 import { ScrollSystem } from "@/components/scroll/ScrollSystem";
+import { BackToTop, ScrollProgress } from "@/components/arcade/BackToTop";
 
 const inter = localFont({
   src: "../../public/fonts/inter-variable.ttf",
@@ -66,8 +67,10 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           <main id="main-content" className="relative z-10">
+            <ScrollProgress />
             <ScrollSystem className="relative z-10">{children}</ScrollSystem>
           </main>
+          <BackToTop />
           <Footer />
         </Providers>
       </body>

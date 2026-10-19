@@ -33,7 +33,14 @@
 - [x] `npm test` — 12/12 unit tests pass (`tests/unit/utils.test.ts`)
 - [x] Asset refs resolve (no 404s) — images, fonts (self-hosted Inter), links
 - [x] **Integration** — `ScrollSystem` (Locomotive + GSAP ScrollTrigger + PageTransition,
-      `prefers-reduced-motion` aware) wired into root layout.
+      `prefers-reduced-motion` aware) wired into root layout; `useGamesData` hydrates the
+      catalog client-side.
+- [x] **Scroll chrome wired into root layout** — `BackToTop` + `ScrollProgress` (from
+      `components/arcade/BackToTop.tsx`) are now rendered by the root layout so every page
+      gets the fixed back-to-top button and full-page scroll progress bar.
+- [x] **NewsletterForm import fix** — `src/components/arcade/NewsletterForm.tsx` had
+      `import { useState } from "react"` dangling at the *bottom* of the file (after the
+      component body), which is invalid TS. Moved it to the top import block.
 - [x] **Catalog data flow (replaced broken hydration)** — the old architecture injected the
       catalog via `window.__arcadeGames` on client hydration, but **nothing ever set that
       global**, so every page fell back to empty and showed "LOADING VAULT..." forever (build
@@ -106,7 +113,10 @@ into the smooth-scroll, scroll-driven, page-transitioning arcade experience from
       `Hero` (CRT scanline shader, RGB-shift). Respect `prefers-reduced-motion` on all.
 - [ ] **Barba.js v2** — import `@barba/core` into layout for seamless page transitions. (`@barba/core` installed, never imported)
 - [ ] **PinSection / ParallaxSection** — wire these into a scrolltelling hero sequence (e.g. home or a dedicated scroll page). (complete, not yet used)
-- [ ] **MagneticButton** — use on CTA buttons (hero "Play Now", category cards). (complete, not yet used)
+- [x] **MagneticButton** — use on CTA buttons (hero "Play Now", category cards). (complete, not yet used)
+- [x] **BackToTop / ScrollProgress** — wired into root layout (complete, now in use).
+- [ ] **PinSection / ParallaxSection** — wire these into a scrolltelling hero sequence (e.g. home or a dedicated scroll page). (complete, not yet used)
+- [ ] **Barba.js v2** — import `@barba/core` into layout for seamless page transitions. (`@barba/core` installed, never imported)
 
 > Rule from CLAUDE.md: isolate GSAP/Three.js from Framer Motion per component tree.
 > Respect `prefers-reduced-motion` on every animation.

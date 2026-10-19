@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/Input";
@@ -100,5 +101,3 @@ export function NewsletterForm({ onSubmit, className, variant = "default" }: New
     </form>
   );
 }
-
-import { useState } from "react";
