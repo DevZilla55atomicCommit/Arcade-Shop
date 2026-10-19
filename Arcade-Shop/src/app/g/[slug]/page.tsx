@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useSyncExternalStore } from "react";
 import { useGamesData } from "@/lib/games-data";
@@ -86,7 +87,7 @@ export default function GameDetail() {
       <article className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <div className="space-y-4">
           <div className="aspect-[16/10] rounded-arcade-lg overflow-hidden bg-arcade-bg-elevated">
-            <img src={images[selectedImage]} alt={game.title} className="w-full h-full object-cover" />
+            <Image src={images[selectedImage]} alt={game.title} fill className="w-full h-full object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
           </div>
           <div className="flex gap-3">
             {images.map((img, i) => (
@@ -98,7 +99,7 @@ export default function GameDetail() {
                   (i === selectedImage ? "border-arcade-accent-pink" : "border-transparent opacity-60")
                 }
               >
-                <img src={img} alt="" className="w-full h-full object-cover" />
+                <Image src={img} alt="" fill width={80} height={112} />
               </button>
             ))}
           </div>

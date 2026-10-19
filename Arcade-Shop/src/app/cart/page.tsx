@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCart } from "@/context/CartContext";
 import { useGamesData } from "@/lib/games-data";
 import { formatPrice } from "@/lib/utils";
@@ -49,7 +50,7 @@ export default function CartPage() {
             return (
               <div key={game.id} className="flex gap-4 bg-arcade-bg-card rounded-arcade p-4">
                 <div className="w-24 h-28 flex-shrink-0 rounded-arcade overflow-hidden bg-arcade-bg-elevated">
-                  <img src={game.thumbnail} alt={game.title} className="w-full h-full object-cover" />
+                  <Image src={game.thumbnail} alt={game.title} fill width={96} height={112} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-display text-heading-sm text-arcade-fg-primary">{game.title}</h3>

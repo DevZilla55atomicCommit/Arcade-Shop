@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
@@ -162,7 +163,7 @@ export default function CheckoutPage() {
             {gamesInCart.map((game) => (
               <div key={game.id} className="flex gap-3">
                 <div className="w-12 h-14 flex-shrink-0 rounded-arcade overflow-hidden bg-arcade-bg-elevated">
-                  <img src={game.thumbnail} alt={game.title} className="w-full h-full object-cover" />
+                  <Image src={game.thumbnail} alt={game.title} fill width={48} height={56} />
                 </div>
                 <div className="flex-1">
                   <p className="font-display text-xs text-arcade-fg-primary leading-tight">{game.title}</p>

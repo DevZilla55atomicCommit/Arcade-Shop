@@ -3,6 +3,7 @@
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 import { motion, HTMLMotionProps } from "framer-motion";
+import Image from "next/image";
 
 interface CardProps extends HTMLMotionProps<'div'> {
   variant?: "default" | "game" | "feature" | "testimonial" | "category";
@@ -88,11 +89,12 @@ export const GameCard = ({
   return (
     <Card variant="game" className={cn("group cursor-pointer", className)} onClick={onClick}>
       <div className="relative aspect-[16/10] overflow-hidden bg-arcade-bg-elevated">
-        <img
+        <Image
           src={game.thumbnail}
           alt={game.title}
+          fill
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
+          sizes="(max-width: 768px) 100vw, 250px"
         />
         {hasDiscount && (
           <div className="absolute top-3 left-3 z-10">

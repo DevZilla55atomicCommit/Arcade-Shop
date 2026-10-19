@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { RatingStars } from "./RatingStars";
+import Image from "next/image";
 
 interface GameTrailerProps {
   trailerUrl: string;
@@ -25,10 +26,12 @@ export function GameTrailer({ trailerUrl, thumbnail, title, className }: GameTra
 
   return (
     <div className={cn("relative aspect-[16/9] rounded-arcade overflow-hidden bg-arcade-bg-elevated", className)}>
-      <img
+      <Image
         src={thumbnail}
         alt={`${title} trailer thumbnail`}
+        fill
         className="w-full h-full object-cover transition-opacity duration-300"
+        sizes="(max-width: 768px) 100vw, 100%"
         style={{ opacity: isPlaying ? 0 : 1 }}
       />
       {!isPlaying && (

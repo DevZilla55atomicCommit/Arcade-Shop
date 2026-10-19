@@ -3,11 +3,13 @@
 **Project root:** `/Volumes/Samsung LED/Game Store/Arcade-Shop`
 **Branch:** `feat/build-setup` (branch-per-feature; never push `main` directly)
 
-> Status: **Build green + catalog wired end-to-end.** 36 arcade components, 5 contexts, 6
-> lib files, 27 route dirs, 26 routes all prerender. Core pages are wired to the data
-> layer (shop, cart, wishlist, categories, best-sellers, top-rated, sale, new-releases,
-> product detail) and the animation/scroll systems are wired into the root layout. The
-> real remaining work is **page content** (Phase 3) and **polish/perf** (Phase 4).
+> Status: **Build green + catalog wired end-to-end + images WebP-converted.** 36 arcade
+> components, 5 contexts, 6 lib files, 27 route dirs, 26 routes all prerender. Core pages
+> are wired to the data layer (shop, cart, wishlist, categories, best-sellers, top-rated,
+> sale, new-releases, product detail) and the animation/scroll systems are wired into the
+> root layout. All 6 games' PNG assets converted to WebP (q75/m6, 27 images). The real
+> remaining work is migrating the 7 remaining `<img>` tags to `next/image`, then
+> **page content** (Phase 3) and **polish/perf** (Phase 4).
 >
 > **Latest commit (7d59af2):** interactive components wired into pages (product action bar,
 > wishlist share+related, account library, contact cookie banner) and a new multi-step
@@ -36,6 +38,10 @@
 - [x] `npx tsc --noEmit` — full typecheck clean
 - [x] `npx eslint .` — 0 errors, 7 harmless `@next/next/no-img-element` warnings
 - [x] `npm test` — 12/12 unit tests pass (`tests/unit/utils.test.ts`)
+- [x] **Image optimization (assets)** — all 6 games' PNG assets converted to WebP via
+      `cwebp -q 75 -m 6` (27 images: hero/screenshot/thumb per game). Verified all 27 `.webp`
+      files exist in `public/images/games/<game>/` so no 404s. Still pending: migrate the 7
+      remaining raw `<img>` tags to `next/image` (Phase 4 item below).
 - [x] Asset refs resolve (no 404s) — images, fonts (self-hosted Inter), links
 - [x] **Integration** — `ScrollSystem` (Locomotive + GSAP ScrollTrigger + PageTransition,
       `prefers-reduced-motion` aware) wired into root layout; `useGamesData` hydrates the
@@ -151,7 +157,12 @@ shipping have data-driven content). Remaining content work:
 
 ### Phase 4 — Polish & Performance
 
-- [ ] Image optimization (next/image, WebP/AVIF) — replace 7 `<img>` usages
+- [x] Image optimization (next/image, WebP/AVIF) — migrated all 7 local `<img>` usages to
+      `next/image` (`fill` + explicit `width`/`height` where the container is fixed-pixel:
+      `Card` 250px, product gallery 50vw, thumbs 80×112, cart 96×112, checkout 48×56,
+      trailer 100%). All 6 games' assets already converted to WebP (q75/m6, 27 files).
+      Note: `ReviewCard` avatar stays a plain `<img>` on purpose — avatars are external
+      URLs, not local assets.
 - [ ] Font subsetting + preload (Inter variable self-hosted)
 - [ ] Bundle analysis + Lighthouse > 90
 - [ ] Reduced motion support (verify)
