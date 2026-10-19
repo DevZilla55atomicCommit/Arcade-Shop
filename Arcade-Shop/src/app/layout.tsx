@@ -60,8 +60,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Fonts are self-hosted via next/font/local (Inter); no external font requests. */}
       </head>
       <body className="min-h-screen bg-arcade-bg-deep text-arcade-fg-primary antialiased">
         <Providers>
