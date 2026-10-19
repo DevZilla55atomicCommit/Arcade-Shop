@@ -1,86 +1,52 @@
-"use client";
+import { useGamesData as useGameCatalog } from "@/context/GameCatalogContext";
+import type { Game } from "@/types";
 
-import { useState, useEffect, useCallback } from "react";
-import type { Category, Game, Platform } from "@/types";
+// The live catalog is provided through React context by the server component
+// (game-catalog.server.tsx), which reads content/games and
+// content/categories at build time. `useGamesData` is re-exported from that
+// context so every page import keeps working unchanged.
 
-// Hydrate the full game catalog from static content at module load, then
-// expose a typed, filterable store for the UI. This keeps pages server-free
-// while matching the client-side GameContext API the components expect.
-const RAW = typeof window !== "undefined" ? window.__arcadeGames ?? null : null;
+export { useGamesData } from "@/context/GameCatalogContext";
 
-export function loadGamesData(): { games: Game[]; categories: Category[] } {
-  if (RAW) {
-    return { games: RAW.games as Game[], categories: RAW.categories as Category[] };
-  }
-  // Fallback: return an empty-but-typed shape so components never crash on the
-  // server prerender. The client hydrates on mount.
-  return { games: [], categories: [] };
-}
-
-export function useGamesData() {
-  const [games, setGames] = useState<Game[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [ready, setReady] = useState(false);
-
-  // Hydration: populate the store from the injected payload on client mount.
-  // This is the documented use case for setState-in-effect (synchronizing
-  // React state with an external payload), so it is intentionally allowed.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const data = loadGamesData();
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setGames(data.games);
-    setCategories(data.categories);
-    setReady(true);
-  }, []);
-
-  const getGamesByCategory = useCallback(
-    (category: string) => games.filter((g) => g.category === category),
-    [games]
-  );
-  const getGameBySlug = useCallback(
-    (slug: string) => games.find((g) => g.slug === slug),
-    [games]
-  );
-
-  // Bridge for server-side hydration: a parent can pre-seed the store.
-  if (ready && !games.length && typeof window !== "undefined") {
-    const data = loadGamesData();
-    if (data.games.length) {
-      setGames(data.games);
-      setCategories(data.categories);
-    }
-  }
-
-  return { games, categories, ready, getGamesByCategory, getGameBySlug };
-}
-
-// Helpers used across pages.
-export function getFeaturedGames(games: Game[]) {
+// Pure catalog helpers. These operate on an already-loaded `Game[]` and are
+// imported by pages/components for filtering/sorting/deriving collections.
+export function getFeaturedGames(games: Game[]): Game[] {
   return games.slice(0, 4);
 }
 
-export function getNewReleases(games: Game[]) {
+export function getNewReleases(games: Game[]): Game[] {
   return [...games].sort((a, b) =>
     new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime()
   ).slice(0, 8);
 }
 
-export function getTopRated(games: Game[]) {
+export function getTopRated(games: Game[]): Game[] {
   return [...games].sort((a, b) => b.rating - a.rating).slice(0, 8);
 }
 
-export function getOnSale(games: Game[]) {
-  return games.filter((g) => g.discount && g.discount > 0).slice(0, 8);
+export function getOnSale(games: Game[]): Game[] {
+  type WithDiscount = Game & { discount: number };
+  return games
+    .filter((g): g is WithDiscount => typeof g.discount === "number" && g.discount > 0)
+    .sort((a, b) => b.discount - a.discount)
+    .slice(0, 8);
 }
 
-export function searchGames(games: Game[], query: string) {
+export function getGamesByCategory(games: Game[], slug: string): Game[] {
+  return games.filter((g) => g.category === slug);
+}
+
+export function getGameBySlug(games: Game[], slug: string): Game | undefined {
+  return games.find((g) => g.slug === slug);
+}
+
+export function searchGames(games: Game[], query: string): Game[] {
   if (!query.trim()) return games;
   const q = query.toLowerCase();
   return games.filter(
     (g) =>
       g.title.toLowerCase().includes(q) ||
       g.description.toLowerCase().includes(q) ||
-      g.tags.some((t) => t.toLowerCase().includes(q))
+      g.tags.some((t: string) => t.toLowerCase().includes(q))
   );
 }

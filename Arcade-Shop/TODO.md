@@ -3,10 +3,11 @@
 **Project root:** `/Volumes/Samsung LED/Game Store/Arcade-Shop`
 **Branch:** `feat/build-setup` (branch-per-feature; never push `main` directly)
 
-> Status: **Build green + integration complete.** 36 arcade components, 5 contexts, 6
-> lib files, 27 route dirs, 26 routes all prerender. The animation/scroll systems are
-> now wired into the layout. The real remaining work is **page content** (Phase 3) and
-> **polish/perf** (Phase 4).
+> Status: **Build green + catalog wired end-to-end.** 36 arcade components, 5 contexts, 6
+> lib files, 27 route dirs, 26 routes all prerender. Core pages are wired to the data
+> layer (shop, cart, wishlist, categories, best-sellers, top-rated, sale, new-releases,
+> product detail) and the animation/scroll systems are wired into the root layout. The
+> real remaining work is **page content** (Phase 3) and **polish/perf** (Phase 4).
 
 > **Build fix log:** the production build failed repeatedly with `ReferenceError: document
 > is not defined` at `.next/server/chunks/125.js:9` — a shared chunk bundling Locomotive
@@ -32,8 +33,21 @@
 - [x] `npm test` — 12/12 unit tests pass (`tests/unit/utils.test.ts`)
 - [x] Asset refs resolve (no 404s) — images, fonts (self-hosted Inter), links
 - [x] **Integration** — `ScrollSystem` (Locomotive + GSAP ScrollTrigger + PageTransition,
-      `prefers-reduced-motion` aware) wired into root layout; `useGamesData` hydrates the
-      catalog client-side.
+      `prefers-reduced-motion` aware) wired into root layout.
+- [x] **Catalog data flow (replaced broken hydration)** — the old architecture injected the
+      catalog via `window.__arcadeGames` on client hydration, but **nothing ever set that
+      global**, so every page fell back to empty and showed "LOADING VAULT..." forever (build
+      was green but the site had no data). Replaced it with a proper React context + server
+      component: `src/context/game-catalog.server.tsx` (`GameCatalog`) reads
+      `content/games/games.json` and `content/categories/categories.json` **once at build
+      time** and provides the snapshot through `GameCatalogContext`. Clients consume it via
+      `useGamesData()` (re-exported from `src/lib/games-data.ts`, which also holds the pure
+      collection helpers). All 10 page imports keep working unchanged. Wired into the provider
+      chain in `src/components/providers/Providers.tsx`.
+- [x] **Webpack fallback for Node built-ins** — the production build (`next build --webpack`)
+      failed with `Module not found: Can't resolve 'fs'` because webpack tried to bundle
+      Node's built-ins used by the server component. Added `webpack` resolve.fallback entries
+      (`fs: false`, `path: false`) to `next.config.js` so they stay external.
 
 ---
 
@@ -85,29 +99,30 @@ layout or page. Wiring them in is the highest-leverage step — it turns a stati
 into the smooth-scroll, scroll-driven, page-transitioning arcade experience from the spec.
 
 - [x] **Locomotive Scroll + GSAP ScrollTrigger** — `ScrollSystem` (composes both, with a
-      `prefers-reduced-motion` fallback) is wired into the root layout; `useGamesData`
-      hydrates the catalog client-side so pages prerender without touching globals.
+      `prefers-reduced-motion` fallback) is wired into the root layout. The catalog is no longer
+      hydrated via `window.__arcadeGames` (that was dead — nothing set it); it now flows from
+      the build-time server component through `useGamesData`.
+- [x] **Scanlines / CRTOverlay** — `Scanlines` + `CRTOverlay`/`CRTCurvature` are used inside
+      `Hero` (CRT scanline shader, RGB-shift). Respect `prefers-reduced-motion` on all.
 - [ ] **Barba.js v2** — import `@barba/core` into layout for seamless page transitions. (`@barba/core` installed, never imported)
-- [ ] **PinSection / ParallaxSection** — wire these into a scrolltelling hero sequence (e.g. home or a dedicated scroll page). (orphaned)
-- [ ] **Scanlines / CRTOverlay** — apply `Scanlines`/`CRTOverlay` to hero + select sections. (orphaned)
-- [ ] **MagneticButton** — use on CTA buttons (hero "Play Now", category cards). (orphaned)
+- [ ] **PinSection / ParallaxSection** — wire these into a scrolltelling hero sequence (e.g. home or a dedicated scroll page). (complete, not yet used)
+- [ ] **MagneticButton** — use on CTA buttons (hero "Play Now", category cards). (complete, not yet used)
 
 > Rule from CLAUDE.md: isolate GSAP/Three.js from Framer Motion per component tree.
 > Respect `prefers-reduced-motion` on every animation.
 
 ### Phase 3 — Page content (fill 24 route dirs)
 
-Pages exist as route stubs; most need data-driven content wired in.
+Most pages are **already wired to the data layer** (verified: shop/cart/wishlist/categories/
+best-sellers/top-rated/sale/new-releases all render data; about/blog/careers/help/faq/refunds/
+shipping have data-driven content). Remaining content work:
 
-- [ ] **Shop** (`/shop`) — filterable grid (`GameFilter` + `GameSort`), infinite scroll, quick view. (orphaned)
-- [ ] **Product detail** (`/g/[slug]`) — gallery, specs, reviews, add-to-cart. (partial: has `ReviewCard`/`ReviewForm`/`AddToCart`/`PlatformBadges`/`PriceDisplay`/`SystemRequirements`/`GameTrailer` available)
-- [ ] **Cart / Checkout** (`/cart`) — arcade UI, uses `CartContext`. (needs wiring)
-- [ ] **Wishlist** (`/wishlist`) — uses `WishlistContext` + `WishlistButton`. (needs wiring)
-- [ ] **Account** (`/account`) — uses `UserContext`. (needs wiring)
-- [ ] **Best-sellers / New-releases / Top-rated / Sale** — curated lists. (needs content)
-- [ ] **Categories** (`/categories`) — uses `CategoryTabs`. (needs wiring)
+- [ ] **Product detail** (`/g/[slug]`) — finalize gallery, specs, reviews, add-to-cart. (partial: `ReviewCard`/`ReviewForm`/`AddToCart`/`PlatformBadges`/`PriceDisplay`/`SystemRequirements`/`GameTrailer` available)
+- [ ] **Cart / Checkout** (`/cart`) — arcade UI wired to `CartContext`; add multi-step checkout flow. (wired, needs checkout)
+- [ ] **Wishlist** (`/wishlist`) — wired to `WishlistContext` (wired, needs ShareButton/related games).
+- [ ] **Account** (`/account`) — wired to `UserContext` (wired, needs profile/library/settings tabs).
 - [ ] **Related games** (`RelatedGames`) — wire into product pages. (orphaned)
-- [ ] **NewsletterForm / CookieBanner / ShareButton / BackToTop** — wire into relevant pages. (partial)
+- [ ] **NewsletterForm / CookieBanner / ShareButton / BackToTop** — wire into relevant pages. (orphaned)
 
 ### Phase 4 — Polish & Performance
 

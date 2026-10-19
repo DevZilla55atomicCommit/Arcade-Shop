@@ -6,6 +6,7 @@ import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { GameProvider } from "@/context/GameContext";
 import { UserProvider } from "@/context/UserContext";
+import { GameCatalog } from "@/context/game-catalog.server";
 import { ReactNode } from "react";
 
 export function Providers({ children }: { children: ReactNode }) {
@@ -16,7 +17,9 @@ export function Providers({ children }: { children: ReactNode }) {
           <WishlistProvider>
             <GameProvider>
               <UserProvider>
-                {children}
+                <GameCatalog>
+                  {children}
+                </GameCatalog>
               </UserProvider>
             </GameProvider>
           </WishlistProvider>
